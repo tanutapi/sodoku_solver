@@ -17,7 +17,6 @@ game_state = [
     9, 6, 3, 4, 8, 0, 7, 0, 5,
     1, 0, 0, 0, 5, 6, 0, 0, 8,
 ]
-# weight_table = [9] * dimension * dimension
 empty_box_indexes = [x for x in range(0, dimension * dimension)]
 
 
@@ -40,40 +39,6 @@ def prepare_indexes(state, indexes):
     for i in range(len(state)):
         if state[i] == 0:
             indexes.append(i)
-
-
-# def fill_weight_and_find_sorted_indexes(state, weight, sorts):
-#     sorts.clear()
-#     for i in range(len(state)):
-#         weight[i] = 0 if state[i] > 0 else 9
-#     for r in range(dimension):
-#         offset = r * dimension
-#         row = state[offset: offset + dimension]
-#         num = dimension - len(list(filter(lambda x: x > 0, row)))
-#         for c in range(dimension):
-#             offset = r * dimension + c
-#             weight[offset] = min(weight[offset], num)
-#     for c in range(dimension):
-#         col = state[c:: dimension]
-#         num = dimension - len(list(filter(lambda x: x > 0, col)))
-#         for r in range(dimension):
-#             offset = r * dimension + c
-#             weight[offset] = min(weight[offset], num)
-#     for r in range(sub_dimension):
-#         for c in range(sub_dimension):
-#             offset1 = r * dimension * sub_dimension + c * sub_dimension
-#             offset2 = offset1 + dimension
-#             offset3 = offset2 + dimension
-#             sub = state[offset1:offset1 + 3] + state[offset2:offset2 + 3] + state[offset3:offset3 + 3]
-#             num = dimension - len(list(filter(lambda x: x > 0, sub)))
-#             for sr in range(sub_dimension):
-#                 for sc in range(sub_dimension):
-#                     offset = (r * sub_dimension + sr) * dimension + (c * sub_dimension + sc)
-#                     weight[offset] = min(weight[offset], num)
-#     for n in range(1, dimension + 1):
-#         for i in range(len(weight)):
-#             if n == weight[i]:
-#                 sorts.append(i)
 
 
 def fail_state_check(state):
@@ -122,10 +87,6 @@ if __name__ == '__main__':
 
     start_time = time.perf_counter()
     prepare_indexes(game_state, empty_box_indexes)
-    # fill_weight_and_find_sorted_indexes(game_state, weight_table, empty_box_indexes)
-    # print()
-    # print('Weighting Table:')
-    # print_board(weight_table)
 
     print()
     print('Indexes of Empty Boxes:')
