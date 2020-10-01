@@ -1,3 +1,3 @@
-# sodoku_solver
+# Sudoku Solver
 
 My Sudoku Solver implemented in Python.
